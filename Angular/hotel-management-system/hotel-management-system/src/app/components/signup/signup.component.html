@@ -1,0 +1,57 @@
+<div class="container mt-5 d-flex justify-content-center">
+    <form [formGroup]="signupForm" (ngSubmit)="onRegister()" class="bg-dark text-white p-4 rounded" style="width: 400px;">
+      <h2 class="text-center mb-4 text-light">Sparkle Inn</h2>
+  
+      <input formControlName="name" class="form-control mb-2" placeholder="Name" />
+      <div *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.invalid" class="text-danger small">
+        Name is required (max 50 characters).
+      </div>
+  
+      <input formControlName="email" class="form-control mb-2" placeholder="Email" />
+      <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid" class="text-danger small">
+        <div *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</div>
+        <div *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email</div>
+      </div>
+  
+      <div class="d-flex gap-2 mb-2">
+        <select formControlName="countryCode" class="form-select w-25">
+          <option value="+91">+91</option>
+          <option value="+1">+1</option>
+        </select>
+        <input formControlName="mobileNumber" class="form-control w-75" placeholder="Mobile Number" />
+      </div>
+      <div *ngIf="signupForm.get('mobile')?.touched && signupForm.get('mobile')?.invalid" class="text-danger small">
+        Enter a valid mobile number
+      </div>
+  
+      <textarea formControlName="address" class="form-control mb-2" placeholder="Address"></textarea>
+      <div *ngIf="signupForm.get('address')?.touched && signupForm.get('address')?.invalid" class="text-danger small">
+        Address is required.
+      </div>
+  
+      <input formControlName="loginId" class="form-control mb-2" placeholder="Customer ID (Username)" />
+      <div *ngIf="signupForm.get('loginId')?.touched && signupForm.get('loginId')?.invalid" class="text-danger small">
+        UserId must be 5-20 characters.
+      </div>
+  
+      <input type="password" formControlName="password" class="form-control mb-2" placeholder="Password" />
+      <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid" class="text-danger small">
+        <div *ngIf="signupForm.get('password')?.errors?.['required']">Password required</div>
+        <div *ngIf="signupForm.get('password')?.errors?.['pattern']">
+          Password must contain uppercase, lowercase, special char (6-30 length)
+        </div>
+      </div>
+  
+      <input type="password" formControlName="confirmPassword" class="form-control mb-2" placeholder="Confirm Password" />
+      <div *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched" class="text-danger small">
+        Password & Confirm Password must be same
+      </div>
+  
+      <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+      <button type="button" class="btn btn-warning w-100 mt-2" (click)="onReset()">Reset</button>
+      <p class="text-center text-secondary w-100 mt-2">
+        Already have an account?  <a routerLink="/signup" class="text-center text-primary">Login</a>
+      </p>
+    </form>
+  </div>
+  

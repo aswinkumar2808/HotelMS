@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <div class="card shadow-lg">
+      <div class="card-header bg-danger text-white rounded-0">
+        <h4 class="mb-0">Room Status Overview</h4>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-bordered table-striped table-hover mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th>Room Number</th>
+              <th>Room Type</th>
+              <th>Room Status</th>
+              <th>Reservation ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of rooms">
+              <td>{{ room.roomNumber }}</td>
+              <td>{{ room.roomType }}</td>
+              <td>
+                <button 
+                  class="btn btn-sm w-100 rounded-pill fw-bold shadow-sm" 
+                  [ngClass]="room.status === 'available' ? 'btn-success' : 'btn-danger'" 
+                  (click)="toggleRoomStatus(room)">
+                  {{ room.status === 'available' ? 'Available' : 'Booked' }}
+                </button>
+              </td>
+              <td>
+                <span [ngClass]="{'text-muted': !room.reservationId || room.reservationId === 0}">
+                  {{ room.reservationId && room.reservationId !== 0 ? room.reservationId : 'Not Reserved' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

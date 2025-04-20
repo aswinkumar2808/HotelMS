@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand fw-bold" href="#">🏨 Sparkle Inn</a>
+  
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf = "!hideNavBar">
+        <li class="nav-item">
+          <a [routerLink]="['/homepage']" class="nav-link text-light" >
+            <i class="bi bi-house-door-fill"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/reservations']">
+            <i class="bi bi-journal-bookmark-fill"></i> Reservation
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/user-checkout']">
+            <i class="bi bi-receipt"></i> Bill
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAdminRoute">
+          <a class="nav-link" [routerLink]="['admin/admin-history-page']">
+            <i class="bi bi-clock-history"></i> History
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isAdminRoute">
+          <a class="nav-link"  [routerLink]="['customer-history-page']">
+            <i class="bi bi-clock-history"></i> History
+          </a>
+        </li>
+        <li *ngIf = "isAdminRoute" class="nav-item">
+          <a class="nav-link" [routerLink]="['admin/room-status']">
+            <i class="bi bi-clock-history"></i> Room Status
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="bi bi-receipt"></i> Bookings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="bi bi-receipt"></i> Contact Support
+            </a>
+          </li>
+      </ul>
+  
+      <span class="navbar-text me-3 text-white" *ngIf = "!hideNavBar">
+        <i  class="bi bi-person-circle"></i> Welcome,
+         <strong *ngIf = "!isAdminRoute">{{username}}</strong>
+         <strong *ngIf = "isAdminRoute">{{adminname}}</strong>
+      </span>
+      <button class="btn btn-danger btn-sm" (click)="isAdminRoute?logoutadmin():logoutuser()" *ngIf = "!hideNavBar">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
+    </div>
+  </nav>

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Reservation Page</title>
+</head>
+<body ng-app="">  
+
+    <main>
+        
+        <div class="container">  
+            
+            <form name="myForm" id = "reservationForm" (ngSubmit)="onSubmit($event)" >
+                
+                <label for = "checkin">Check-in date</label>
+                <input  type="date" id="checkin" [(ngModel)]="reservation.checkInDate" name="checkin" required>
+                <p id="dateError" class="error-message"></p>
+                
+                <label for = "checkout">Check-out date</label>
+                <input type="date" id="checkout" [(ngModel)]="reservation.checkOutDate" name="checkout" required>
+                <p id="dateError" class="error-message"></p>
+                
+                <label for = "roompreference">Room Preference</label>
+                <select id="roompreference" [(ngModel)]="reservation.roomPreference" name="roompreference">
+                    <option value = "single">Single Room</option>
+                    <option value = "double">Double Room</option>
+                    <option value = "suite">Suite</option>
+                </select>
+                <p id="roomError" class="error-message"></p>
+                
+                <label for = "name">FullName</label>
+                <input type="text" id="name" [(ngModel)]="reservation.name" name="name" required>
+                <p id="nameError" class="error-message"></p>
+                
+                <label for = "contact">Contact No</label>
+                <input type="tel" id="contact" [(ngModel)]="reservation.contact" name="contact" required maxlength="10">
+                
+                <p id="contactError" class = "error-message"></p>
+                
+                <button type="submit">Submit</button>
+                <p id="generalError" class="error-message"></p>
+            </form>       
+            <p id="confirmationMessage" style="display: none; color: green;"></p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 HOTEL HOPE. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
+

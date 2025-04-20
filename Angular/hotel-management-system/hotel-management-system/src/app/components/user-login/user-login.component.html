@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center align-items-center vh-100 ">
+    <div class="shadow p-4 bg-dark rounded " style="width: 100%; max-width: 400px; ">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2 class="fw-bold text-center text-light">Sparkle Inn</h2>
+        <p class="text-center text-muted">LOGIN</p>
+  
+        <div class="position-relative mb-1">
+          <input type="text" class="form-control border-0 border-bottom border-dark shadow-none focus:outline-none ps-5" placeholder="Username" formControlName="loginId">
+          <i class="bi bi-person-fill position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+        </div>
+        <div class="mb-2" style="height: 20px;">
+          <div *ngIf="loginId.touched && loginId.invalid" class="text-danger ms-1 small">
+            <div *ngIf="loginId.hasError('required')">Username is required.</div>
+          </div>
+        </div>
+  
+        <div class="position-relative mb-1">
+          <input type="password" class="form-control border-0 border-bottom border-dark shadow-none focus:outline-none ps-5" placeholder="Password" formControlName="password">
+          <i class="bi bi-lock-fill position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+        </div>
+        <div class="mb-3" style="height: 20px;">
+          <div *ngIf="password.touched && password.invalid" class="text-danger ms-1 small">
+            <div *ngIf="password.hasError('required')">Password is required.</div>
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-warning w-100 mb-3">LOGIN</button>
+  
+        <p class="text-center text-secondary">
+          Don't Have An Account? <a routerLink="/signup" class="text-center text-primary">Signup</a>
+        </p>
+  
+
+        <div *ngIf="loginError" class="text-danger text-center mt-3">
+          {{ loginError }}
+        </div>
+      </form>
+    </div>
+  </div>
+  
