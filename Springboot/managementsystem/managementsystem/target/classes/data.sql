@@ -1,0 +1,1 @@
+INSERT INTO Admin (AdminName, Password)  Values ('admin1','admin@123');
